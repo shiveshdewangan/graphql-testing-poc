@@ -1,10 +1,11 @@
-const chai = require("chai");
-const expect = chai.expect;
+// const chai = require("chai");
+// const expect = chai.expect;
 const url = `http://localhost:4000`;
 const request = require("supertest")(url);
 
+
 describe("GraphQL POC", () => {
-  it.skip("TC001 - GraphQL Test", () => {
+  it("TC001 - GraphQL Test", () => {
     request
       .post("/")
       .send({
@@ -17,13 +18,18 @@ describe("GraphQL POC", () => {
       .expect(200)
       .end((err, res) => {
         if (err) return err;
-        console.log("res ", res);
-        expect(res.body.data.name).to.equal("Shivesh");
-        expect(res.body.data.city).to.equal("Sydney");
-        expect(res.body.data.country).to.equal("Australia");
+        expect(res.body.data.name).toBeString("Shivesh");
+        expect(res.body.data.city).toBeString("Sydney");
+        expect(res.body.data.country).toBeString("Australia");
+        
+        
+
       });
   });
-  it.skip("TC002 - Simple Test", () => {
-    expect(true).to.equal(true);
+
+  it("TC002 - Simple Test", () => {
+    expect(1).toBe(1)
   });
+
+  
 });
